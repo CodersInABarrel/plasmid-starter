@@ -1,4 +1,4 @@
-package org.example.MODNAME.game;
+package yes.game;
 
 import net.minecraft.util.ActionResult;
 import xyz.nucleoid.plasmid.game.*;
@@ -6,34 +6,34 @@ import xyz.nucleoid.plasmid.game.event.*;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.GameMode;
-import org.example.MODNAME.game.map.MODCLASSMap;
-import org.example.MODNAME.game.map.MODCLASSMapGenerator;
+import yes.game.map.DarfWarMap;
+import yes.game.map.DarfWarMapGenerator;
 import xyz.nucleoid.fantasy.BubbleWorldConfig;
 
-public class MODCLASSWaiting {
+public class DarfWarWaiting {
     private final GameSpace gameSpace;
-    private final MODCLASSMap map;
-    private final MODCLASSConfig config;
-    private final MODCLASSSpawnLogic spawnLogic;
+    private final DarfWarMap map;
+    private final DarfWarConfig config;
+    private final DarfWarSpawnLogic spawnLogic;
 
-    private MODCLASSWaiting(GameSpace gameSpace, MODCLASSMap map, MODCLASSConfig config) {
+    private DarfWarWaiting(GameSpace gameSpace, DarfWarMap map, DarfWarConfig config) {
         this.gameSpace = gameSpace;
         this.map = map;
         this.config = config;
-        this.spawnLogic = new MODCLASSSpawnLogic(gameSpace, map);
+        this.spawnLogic = new DarfWarSpawnLogic(gameSpace, map);
     }
 
-    public static GameOpenProcedure open(GameOpenContext<MODCLASSConfig> context) {
-        MODCLASSConfig config = context.getConfig();
-        MODCLASSMapGenerator generator = new MODCLASSMapGenerator(config.mapConfig);
-        MODCLASSMap map = generator.build();
+    public static GameOpenProcedure open(GameOpenContext<DarfWarConfig> context) {
+        DarfWarConfig config = context.getConfig();
+        DarfWarMapGenerator generator = new DarfWarMapGenerator(config.mapConfig);
+        DarfWarMap map = generator.build();
 
         BubbleWorldConfig worldConfig = new BubbleWorldConfig()
                 .setGenerator(map.asGenerator(context.getServer()))
                 .setDefaultGameMode(GameMode.SPECTATOR);
 
         return context.createOpenProcedure(worldConfig, game -> {
-            MODCLASSWaiting waiting = new MODCLASSWaiting(game.getSpace(), map, context.getConfig());
+            DarfWarWaiting waiting = new DarfWarWaiting(game.getSpace(), map, context.getConfig());
 
             GameWaitingLobby.applyTo(game, config.playerConfig);
 
@@ -44,7 +44,7 @@ public class MODCLASSWaiting {
     }
 
     private StartResult requestStart() {
-        MODCLASSActive.open(this.gameSpace, this.map, this.config);
+        DarfWarActive.open(this.gameSpace, this.map, this.config);
         return StartResult.OK;
     }
 

@@ -1,4 +1,4 @@
-package org.example.MODNAME.game;
+package yes.game;
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
@@ -18,46 +18,46 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.GameMode;
-import org.example.MODNAME.game.map.MODCLASSMap;
+import yes.game.map.DarfWarMap;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class MODCLASSActive {
-    private final MODCLASSConfig config;
+public class DarfWarActive {
+    private final DarfWarConfig config;
 
     public final GameSpace gameSpace;
-    private final MODCLASSMap gameMap;
+    private final DarfWarMap gameMap;
 
     // TODO replace with ServerPlayerEntity if players are removed upon leaving
-    private final Object2ObjectMap<PlayerRef, MODCLASSPlayer> participants;
-    private final MODCLASSSpawnLogic spawnLogic;
-    private final MODCLASSStageManager stageManager;
+    private final Object2ObjectMap<PlayerRef, DarfWarPlayer> participants;
+    private final DarfWarSpawnLogic spawnLogic;
+    private final DarfWarStageManager stageManager;
     private final boolean ignoreWinState;
-    private final MODCLASSTimerBar timerBar;
+    private final DarfWarTimerBar timerBar;
 
-    private MODCLASSActive(GameSpace gameSpace, MODCLASSMap map, MODCLASSConfig config, Set<PlayerRef> participants) {
+    private DarfWarActive(GameSpace gameSpace, DarfWarMap map, DarfWarConfig config, Set<PlayerRef> participants) {
         this.gameSpace = gameSpace;
         this.config = config;
         this.gameMap = map;
-        this.spawnLogic = new MODCLASSSpawnLogic(gameSpace, map);
+        this.spawnLogic = new DarfWarSpawnLogic(gameSpace, map);
         this.participants = new Object2ObjectOpenHashMap<>();
 
         for (PlayerRef player : participants) {
-            this.participants.put(player, new MODCLASSPlayer());
+            this.participants.put(player, new DarfWarPlayer());
         }
 
-        this.stageManager = new MODCLASSStageManager();
+        this.stageManager = new DarfWarStageManager();
         this.ignoreWinState = this.participants.size() <= 1;
-        this.timerBar = new MODCLASSTimerBar();
+        this.timerBar = new DarfWarTimerBar();
     }
 
-    public static void open(GameSpace gameSpace, MODCLASSMap map, MODCLASSConfig config) {
+    public static void open(GameSpace gameSpace, DarfWarMap map, DarfWarConfig config) {
         gameSpace.openGame(game -> {
             Set<PlayerRef> participants = gameSpace.getPlayers().stream()
                     .map(PlayerRef::of)
                     .collect(Collectors.toSet());
-            MODCLASSActive active = new MODCLASSActive(gameSpace, map, config, participants);
+            DarfWarActive active = new DarfWarActive(gameSpace, map, config, participants);
 
             game.setRule(GameRule.CRAFTING, RuleResult.DENY);
             game.setRule(GameRule.PORTALS, RuleResult.DENY);
@@ -135,7 +135,7 @@ public class MODCLASSActive {
         ServerWorld world = this.gameSpace.getWorld();
         long time = world.getTime();
 
-        MODCLASSStageManager.IdleTickResult result = this.stageManager.tick(time, gameSpace);
+        DarfWarStageManager.IdleTickResult result = this.stageManager.tick(time, gameSpace);
 
         switch (result) {
             case CONTINUE_TICK:

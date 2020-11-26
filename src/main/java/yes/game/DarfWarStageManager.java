@@ -1,4 +1,4 @@
-package org.example.MODNAME.game;
+package yes.game;
 
 import com.google.common.collect.ImmutableSet;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
@@ -14,18 +14,18 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.GameMode;
 
-public class MODCLASSStageManager {
+public class DarfWarStageManager {
     private long closeTime = -1;
     public long finishTime = -1;
     private long startTime = -1;
     private final Object2ObjectMap<ServerPlayerEntity, FrozenPlayer> frozen;
     private boolean setSpectator = false;
 
-    public MODCLASSStageManager() {
+    public DarfWarStageManager() {
         this.frozen = new Object2ObjectOpenHashMap<>();
     }
 
-    public void onOpen(long time, MODCLASSConfig config) {
+    public void onOpen(long time, DarfWarConfig config) {
         this.startTime = time - (time % 20) + (4 * 20) + 19;
         this.finishTime = this.startTime + (config.timeLimitSecs * 20);
     }

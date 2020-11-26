@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "id": "MODNAME",
+  "id": "dwarfwar",
   "version": "${version}",
-  "name": "MODNAME_PRETTY",
-  "description": "DESCRIPTION",
+  "name": "dwarfWar",
+  "description": "dward survival reborn",
   "authors": [
-    "AUTHOR"
+    "i have no name ideas"
   ],
-  "license": "LICENSE",
+  "license": "LGPLv3",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "PACKAGE.MODCLASS"
+      "yes.DarfWar"
     ]
   },
   "depends": {

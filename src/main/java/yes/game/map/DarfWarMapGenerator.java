@@ -1,25 +1,25 @@
-package org.example.MODNAME.game.map;
+package yes.game.map;
 
 import xyz.nucleoid.plasmid.map.template.MapTemplate;
 import xyz.nucleoid.plasmid.util.BlockBounds;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
-import org.example.MODNAME.game.MODCLASSConfig;
+import yes.game.DarfWarConfig;
 
 import java.util.concurrent.CompletableFuture;
 
-public class MODCLASSMapGenerator {
+public class DarfWarMapGenerator {
 
-    private final MODCLASSMapConfig config;
+    private final DarfWarMapConfig config;
 
-    public MODCLASSMapGenerator(MODCLASSMapConfig config) {
+    public DarfWarMapGenerator(DarfWarMapConfig config) {
         this.config = config;
     }
 
-    public MODCLASSMap build() {
+    public DarfWarMap build() {
         MapTemplate template = MapTemplate.createEmpty();
-        MODCLASSMap map = new MODCLASSMap(template, this.config);
+        DarfWarMap map = new DarfWarMap(template, this.config);
 
         this.buildSpawn(template);
         map.spawn = new BlockPos(0,65,0);

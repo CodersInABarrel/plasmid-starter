@@ -1,5 +1,5 @@
 {
-  "type": "MODNAME:MODNAME",
+  "type": "dwarfwar:dwarfwar",
   "map": {
     "spawn_block": {
       "Name": "minecraft:red_terracotta",

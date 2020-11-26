@@ -1,4 +1,4 @@
-package org.example.MODNAME.game;
+package yes.game;
 
 import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.ServerBossBar;
@@ -6,10 +6,10 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 
-public final class MODCLASSTimerBar implements AutoCloseable {
+public final class DarfWarTimerBar implements AutoCloseable {
     private final ServerBossBar bar;
 
-    public MODCLASSTimerBar() {
+    public DarfWarTimerBar() {
         LiteralText title = new LiteralText("Waiting for the game to start...");
 
         this.bar = new ServerBossBar(title, BossBar.Color.GREEN, BossBar.Style.NOTCHED_10);
